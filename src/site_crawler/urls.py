@@ -53,14 +53,19 @@ def is_same_host(url: str, base_host: str) -> bool:
         return False
 
 
-def extract_links(html: str, page_url: str, base_host: str) -> list[str]:
-    """Extract unique, normalised same-host links from HTML anchor href attributes."""
+def extract_links(html: str, page_url: str, base_host: str | None = None) -> list[str]:
+    """Extract unique, normalised HTTP(S) anchor links, including external destinations.
+
+    `base_host` is accepted for backwards compatibility with callers but filtering is
+    deliberately done by the crawler: external links should be reported in page output,
+    but must never be scheduled for fetching.
+    """
     from bs4 import BeautifulSoup
 
     soup = BeautifulSoup(html, "html.parser")
     found: set[str] = set()
     for anchor in soup.find_all("a", href=True):
         normalised = normalise_url(anchor.get("href", ""), base_url=page_url)
-        if normalised and is_same_host(normalised, base_host):
+        if normalised:
             found.add(normalised)
     return sorted(found)

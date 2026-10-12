@@ -24,7 +24,8 @@ def test_crawler_visits_each_same_host_url_once(monkeypatch):
     assert {result.url for result in results} == set(pages)
     assert len(seen) == len(set(seen)) == 3
     root = next(result for result in results if result.url == "https://example.com/")
-    assert root.links == ["https://example.com/a", "https://example.com/b"]
+    assert root.links == ["https://example.com/a", "https://example.com/b", "https://outside.test/"]
+    assert "https://outside.test/" not in {result.url for result in results}
 
 
 def test_failed_page_does_not_stop_crawl(monkeypatch):

@@ -39,7 +39,7 @@ Optional settings:
 site-crawler https://example.com --workers 12 --timeout 8 --max-pages 5000
 ```
 
-The output contains each page URL and the unique, normalised same-host anchor links extracted from its HTML. Failed or non-HTML pages are still reported, with no discovered links.
+The output contains each fetched page URL and the unique, normalised HTTP(S) anchor links extracted from its HTML, including external destinations. Only links on the exact starting hostname are scheduled for crawling. Failed or non-HTML pages are still reported, with no discovered links.
 
 ## Run the tests
 
@@ -78,9 +78,9 @@ Each worker thread owns a `requests.Session`, allowing keep-alive connection reu
 
 ### 5. Parsing and scope of extracted links
 
-Beautiful Soup parses HTML using Python's built-in HTML parser. The implementation extracts anchor `href` values, resolves them to absolute URLs, filters them to the exact host, deduplicates them and sorts them for stable output.
+Beautiful Soup parses HTML using Python's built-in HTML parser. The implementation extracts anchor `href` values, resolves them to absolute URLs, deduplicates them and sorts them for stable output. External HTTP(S) links are included in the page's printed link list, but only links whose hostname exactly matches the starting hostname are added to the crawl frontier.
 
-**Trade-off:** this intentionally treats navigational hyperlinks as crawl links. It does not crawl image, script, stylesheet, iframe or form-action URLs. If “all URLs” were intended to include every URL-bearing HTML attribute, extraction could be extended to a documented list of tags and attributes. JavaScript-generated links are not available from static HTML; browser automation is explicitly out of scope.
+**Trade-off:** this intentionally treats navigational hyperlinks as links of interest. It does not extract URLs from image, script, stylesheet, iframe or form-action attributes. If “all URLs” were intended to include every URL-bearing HTML attribute, extraction could be extended to a documented list of tags and attributes. JavaScript-generated links are not available from static HTML; browser automation is explicitly out of scope.
 
 ### 6. Failure handling and output
 

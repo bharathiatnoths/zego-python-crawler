@@ -25,4 +25,8 @@ def test_extract_links_filters_external_links_and_deduplicates():
     <a href="https://elsewhere.test/">External</a>
     <a href="mailto:help@example.com">Email</a>
     '''
-    assert extract_links(html, "https://example.com/", "example.com") == ["https://example.com/about"]
+    assert extract_links(html, "https://example.com/", "example.com") == [
+        "https://elsewhere.test/",
+        "https://example.com/about",
+        "https://sub.example.com/page",
+    ]
