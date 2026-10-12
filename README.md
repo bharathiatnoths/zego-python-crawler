@@ -112,17 +112,14 @@ Let `V` be the number of pages fetched and `E` the number of anchor links examin
 
 ## Development workflow and AI-tool disclosure
 
-Fill in this section accurately before submission. The exercise specifically asks you to describe the tools you used, so do not claim tools or validation steps that you did not perform.
+This project was developed with assistance from ChatGPT. AI assistance was used to discuss the architecture, draft parts of the implementation and tests, and consider edge cases such as duplicate URLs, external links, redirect handling and failed requests. The code and design choices should be personally reviewed and understood before submission; this disclosure is included because the exercise explicitly asks candidates to describe their use of AI tools.
 
-Suggested details to record:
+- **IDE/editor:** Add the editor and version actually used for your own review and any changes (for example, VS Code or PyCharm).
+- **Python environment:** The automated test suite was run with Python 3.13 in the available development environment. The project declares support for Python 3.10+.
+- **Automated tests:** `PYTHONPATH=src python -m pytest -q` — 7 tests passed in the development environment.
+- **Not yet verified:** A live crawl against a real website, performance benchmarking, linting and static type checking have not been recorded as completed. Run and document these yourself if you perform them.
 
-- **IDE/editor:** [e.g. VS Code / PyCharm and version]
-- **Python environment:** [Python version, virtual environment]
-- **Documentation consulted:** Python `concurrent.futures`, `urllib.parse`, Requests, Beautiful Soup and pytest documentation.
-- **AI assistance:** [Name the tools actually used and explain whether they helped brainstorm architecture, review code, generate tests, or explain trade-offs. State that you reviewed and ran the code yourself, only if true.]
-- **Validation performed:** [Record the exact commands run, test results, lint/type-check results, and any manual tests.]
-
-AI tools can speed up exploration, but generated code should be reviewed for correctness, security, licensing and fit with the requirements. Keep the final account of your workflow transparent and specific.
+AI tools can speed up exploration, but generated code should be reviewed for correctness, security, licensing and fit with the requirements. Keep the final account of your workflow transparent and specific, and only claim checks that you personally performed.
 
 ## Assumptions and limitations
 
