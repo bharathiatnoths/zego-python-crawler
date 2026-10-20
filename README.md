@@ -1,6 +1,6 @@
 # Zego Python Developer Test — Site Crawler
 
-A command-line website crawler that starts from a supplied HTTP(S) URL, prints each fetched page and the same-host links found on that page, and does not crawl external domains or subdomains.
+A command-line website crawler that starts from a supplied HTTP(S) URL, prints each fetched page and the same host links found on that page, and does not crawl external domains or subdomains.
 
 ## Features
 
@@ -114,7 +114,7 @@ Let `V` be the number of pages fetched and `E` the number of anchor links examin
 
 This project was developed with assistance from ChatGPT. AI assistance was used to discuss the architecture, draft parts of the implementation and tests, and consider edge cases such as duplicate URLs, external links, redirect handling and failed requests. The code and design choices should be personally reviewed and understood before submission; this disclosure is included because the exercise explicitly asks candidates to describe their use of AI tools.
 
-- **IDE/editor:** Add the editor and version actually used for your own review and any changes (for example, VS Code or PyCharm).
+- **IDE/editor:**  VS Code.
 - **Python environment:** The automated test suite was run with Python 3.13 in the available development environment. The project declares support for Python 3.10+.
 - **Automated tests:** `PYTHONPATH=src python -m pytest -q` — 7 tests passed in the development environment.
 - **Not yet verified:** A live crawl against a real website, performance benchmarking, linting and static type checking have not been recorded as completed. Run and document these yourself if you perform them.
@@ -128,4 +128,4 @@ AI tools can speed up exploration, but generated code should be reviewed for cor
 - Fragments are removed; query strings are retained.
 - The crawler fetches static HTML only and does not execute JavaScript.
 - The maximum page count is a safety limit; reaching it may leave links unvisited.
-- This is a focused hiring exercise, not a full web-scale crawler. Before production use, add robots-policy handling, explicit rate limiting, richer status reporting and durable crawl state.
+
